@@ -22,6 +22,10 @@
 | 4 | default setup 預設用 default query suite | d4.md | 2026-11-02：啟用時我指定了 query_suite=default；API 回傳 default、weekly 排程 | 未測（是我指定的，沒測「自動選擇」） |
 | 4 | default setup 自動選擇語言 | d4.md | 2026-11-02：自動選了 actions、javascript、javascript-typescript、typescript（含 GitHub Actions workflows） | 一致 |
 | 4 | CodeQL 在首次掃描後偵測可被偵測的弱點 | d4.md | 2026-11-02：1 則 js/code-injection，severity=error、security severity=critical；`res.send` 的 XSS 沒有警示 | 一致（eval 被偵測）；XSS 在 default suite 下未被標出 |
+| 4 | pull request 的檢查名稱（截圖） | d4.md | 2026-11-02（截圖，PR #2、#3）：介面顯示「Code scanning results / CodeQL」；PR #2 為「Successful in 3s — No new alerts in code changed by this pull request」，PR #3 為「Failing after 4s — 2 new alerts including 1 critical severity…」 | 一致（解決了上一列的名稱疑問） |
+| 4 | 合併被阻擋時的畫面（截圖，PR #3） | d4.md | 2026-11-02：「Merging is blocked — CodeQL has detected 2 security relevant alerts blocking this code from being merged」，Merge pull request 按鈕為停用狀態 | 一致 |
+| 4 | pull request 的 code scanning 註解（截圖，PR #3） | d4.md | 2026-11-02：github-advanced-security[bot] 在 diff 上留言；兩則警示為 Critical「Uncontrolled command line」（附 Show paths 與 Copilot 的 Suggested changeset，可 Commit suggestion）與 High「Missing rate limiting」（顯示「Sorry, we could not generate an autofix suggestion. Autofix suggestion is invalid」）。所以那則 High 不是 XSS，而是缺少速率限制 | 一致（autofix 為盡力而為，不是每則都成功） |
+| 3 | dependency review 在 pull request 的結果（截圖，PR #2） | d3.md | 2026-11-02：「Dependency Review / dependency-review (pull_request) Failing after 6s」；同一頁的 Code scanning results 為成功 | 一致 |
 | 4 | error、critical、high 嚴重度使 pull request 檢查失敗 | d4.md | 2026-11-02：PR #3 新增 exec 命令注入，CodeQL check run 結論 failure，標題「2 new alerts including 1 critical severity security vulnerability」（1 critical、1 high）。check run 在 API 的名稱為「CodeQL」，學習站寫的名稱「Code scanning results」在介面的呈現未確認 | 一致（失敗）；名稱需確認 |
 | 4 | security-and-quality 只能用於 advanced setup | d4.md | | |
 | 4 | 警示頁面狀態只反映預設分支 | d4.md | | |
