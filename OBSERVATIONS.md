@@ -12,14 +12,16 @@
 | 1 | 命令列推送含 partner pattern 的 secret 會被阻擋 | d2.md | | |
 | 1 | 「I'll fix it later」產生開啟中的警示 | d2.md | | |
 | 1 | 「It's used in tests」產生已關閉的警示 | d2.md | | |
-| 2 | 警示在 dependency graph 改變或 advisory 新增時產生 | d3.md | | |
-| 2 | Security update 更新到包含修補的最低版本 | d3.md | | |
+| 2 | 警示在 dependency graph 改變或 advisory 新增時產生 | d3.md | 2026-11-02：啟用 Dependabot alerts 後約 90 秒內出現 6 則 lodash 警示（修復版本分別為 4.17.19、4.17.21、4.17.23、4.18.0）；本次是啟用功能後既有 manifest 被掃描，未能分辨「advisory 新增」與「graph 改變」 | 無法測試該區分 |
+| 2 | Security update 更新到包含修補的最低版本 | d3.md | 2026-11-02：6 則警示中最高的 first_patched_version 為 4.18.0（npm 上存在），但 Dependabot 開的 PR #1 把 lodash 從 4.17.15 升到 **4.18.1**（也是 npm latest） | **不一致或需解釋**：不是已確認的最低修補版本 4.18.0；原因不明（可能是 Dependabot 避開 4.18.0 的某個狀況，沒有查證） |
 | 2 | 合併 security update pull request 會關閉警示 | d3.md | | |
 | 2 | 「Dismiss low impact issues…」在公開 repository 預設啟用 | d3.md | | |
 | 2 | Version updates 預設有 3 天 cooldown | d3.md | | |
 | 3 | dependency review action 預設發現有弱點的套件就失敗 | d3.md | | |
 | 3 | allow-licenses 與 deny-licenses 只能擇一 | d3.md | | |
-| 4 | default setup 預設用 default query suite | d4.md | | |
+| 4 | default setup 預設用 default query suite | d4.md | 2026-11-02：啟用時我指定了 query_suite=default；API 回傳 default、weekly 排程 | 未測（是我指定的，沒測「自動選擇」） |
+| 4 | default setup 自動選擇語言 | d4.md | 2026-11-02：自動選了 actions、javascript、javascript-typescript、typescript（含 GitHub Actions workflows） | 一致 |
+| 4 | CodeQL 在首次掃描後偵測可被偵測的弱點 | d4.md | 2026-11-02：1 則 js/code-injection，severity=error、security severity=critical；`res.send` 的 XSS 沒有警示 | 一致（eval 被偵測）；XSS 在 default suite 下未被標出 |
 | 4 | error、critical、high 嚴重度使 pull request 檢查失敗 | d4.md | | |
 | 4 | security-and-quality 只能用於 advanced setup | d4.md | | |
 | 4 | 警示頁面狀態只反映預設分支 | d4.md | | |
