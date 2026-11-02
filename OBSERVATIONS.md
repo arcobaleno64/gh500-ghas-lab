@@ -17,8 +17,8 @@
 | 2 | 合併 security update pull request 會關閉警示 | d3.md | | |
 | 2 | 「Dismiss low impact issues…」在公開 repository 預設啟用 | d3.md | | |
 | 2 | Version updates 預設有 3 天 cooldown | d3.md | | |
-| 3 | dependency review action 預設發現有弱點的套件就失敗 | d3.md | | |
-| 3 | allow-licenses 與 deny-licenses 只能擇一 | d3.md | | |
+| 3 | dependency review action 預設發現有弱點的套件就失敗 | d3.md | 2026-11-02：PR #2 加入 minimist@1.2.0（critical，GHSA-xvch-5gv4-984h）；workflow 失敗，訊息「Dependency review detected vulnerable packages」。注意：我的 workflow 設了 fail-on-severity: high，所以這次不能單獨證明「預設」行為 | 部分一致（在 high 門檻下失敗；未測無門檻的預設） |
+| 3 | allow-licenses 與 deny-licenses 只能擇一 | d3.md | 2026-11-02：同時設 allow-licenses: MIT 與 deny-licenses: GPL-3.0，workflow 失敗，錯誤訊息「You cannot specify both allow-licenses and deny-licenses」 | 一致 |
 | 4 | default setup 預設用 default query suite | d4.md | 2026-11-02：啟用時我指定了 query_suite=default；API 回傳 default、weekly 排程 | 未測（是我指定的，沒測「自動選擇」） |
 | 4 | default setup 自動選擇語言 | d4.md | 2026-11-02：自動選了 actions、javascript、javascript-typescript、typescript（含 GitHub Actions workflows） | 一致 |
 | 4 | CodeQL 在首次掃描後偵測可被偵測的弱點 | d4.md | 2026-11-02：1 則 js/code-injection，severity=error、security severity=critical；`res.send` 的 XSS 沒有警示 | 一致（eval 被偵測）；XSS 在 default suite 下未被標出 |
@@ -26,5 +26,5 @@
 | 4 | security-and-quality 只能用於 advanced setup | d4.md | | |
 | 4 | 警示頁面狀態只反映預設分支 | d4.md | | |
 | 4 | 公開 repository 可用 Copilot Autofix | d4.md | | |
-| 5 | Export SBOM 為 SPDX 格式，不含 dependents | d3.md | | |
-| 5 | 產生 SBOM 的 REST 呼叫：202 輪詢，302 下載 | d3.md | | |
+| 5 | Export SBOM 為 SPDX 格式，不含 dependents | d3.md | 2026-11-02：REST 取得的 SBOM spdxVersion 為 SPDX-2.3，packages 5 個（express、lodash 與 2 個 Actions、repo 本身）；未開啟介面匯出的檔案，也未檢查是否含 dependents | 部分一致（格式 SPDX 一致；dependents 未測） |
+| 5 | 產生 SBOM 的 REST 呼叫：202 輪詢，302 下載 | d3.md | 2026-11-02：generate-report 回 201 與 sbom_url；對 sbom_url 輪詢三次皆立即回 302（導向 blob 儲存體），沒有看到 202（小型 repo 可能立即完成） | 部分一致（302 一致；202 未出現，不能證明或否定） |
