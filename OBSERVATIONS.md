@@ -22,9 +22,14 @@
 | 4 | default setup 預設用 default query suite | d4.md | 2026-11-02：啟用時我指定了 query_suite=default；API 回傳 default、weekly 排程 | 未測（是我指定的，沒測「自動選擇」） |
 | 4 | default setup 自動選擇語言 | d4.md | 2026-11-02：自動選了 actions、javascript、javascript-typescript、typescript（含 GitHub Actions workflows） | 一致 |
 | 4 | CodeQL 在首次掃描後偵測可被偵測的弱點 | d4.md | 2026-11-02：1 則 js/code-injection，severity=error、security severity=critical；`res.send` 的 XSS 沒有警示 | 一致（eval 被偵測）；XSS 在 default suite 下未被標出 |
-| 4 | error、critical、high 嚴重度使 pull request 檢查失敗 | d4.md | | |
+| 4 | error、critical、high 嚴重度使 pull request 檢查失敗 | d4.md | 2026-11-02：PR #3 新增 exec 命令注入，CodeQL check run 結論 failure，標題「2 new alerts including 1 critical severity security vulnerability」（1 critical、1 high）。check run 在 API 的名稱為「CodeQL」，學習站寫的名稱「Code scanning results」在介面的呈現未確認 | 一致（失敗）；名稱需確認 |
 | 4 | security-and-quality 只能用於 advanced setup | d4.md | | |
 | 4 | 警示頁面狀態只反映預設分支 | d4.md | | |
-| 4 | 公開 repository 可用 Copilot Autofix | d4.md | | |
+| 4 | 公開 repository 可用 Copilot Autofix | d4.md | 2026-11-02：對 alert 1 呼叫 autofix API，先回 pending，約 20 秒後 success，建議「移除動態程式碼執行，改用只允許計算機語法的受限運算器」。注意：本帳號有個人 Copilot，所以「不需要 Copilot 授權」未獨立證明 | 一致（可用）；授權條件未測 |
+| 4 | 對警示用 API 關閉為 won't fix 後重新開啟 | d4.md | 2026-11-02：PATCH state=dismissed、dismissed_reason="won't fix" 成功，之後 state=open 可重新開啟，dismissed_reason 回到 null | 一致（可重新開啟）；未列出全部關閉原因 |
+| 4 | Ruleset 的 code scanning 規則阻擋合併 | d4.md | 2026-11-02：在 lab4-base 建立 ruleset（CodeQL、security_alerts_threshold=high_or_higher、alerts_threshold=errors）。PR #3 的 mergeStateStatus：ruleset 啟用時 BLOCKED，停用時 UNSTABLE，再啟用後回到 BLOCKED | 一致（規則本身造成阻擋） |
+| 2 | Dependabot PR 的相容性分數 | d3.md | 2026-11-02（截圖）：PR #1 顯示 compatibility 83% 徽章 | 一致 |
+| 2 | Dependabot 預設簽署自己的 commit | d3.md | 2026-11-02（截圖）：PR #1 的 commit 顯示 Verified | 一致 |
+| 2 | PR 說明合併後會解決的警示 | d3.md | 2026-11-02（截圖）：橫幅「Merging this pull request will resolve Dependabot Alerts on lodash including a high severity alert」 | 一致 |
 | 5 | Export SBOM 為 SPDX 格式，不含 dependents | d3.md | 2026-11-02：REST 取得的 SBOM spdxVersion 為 SPDX-2.3，packages 5 個（express、lodash 與 2 個 Actions、repo 本身）；未開啟介面匯出的檔案，也未檢查是否含 dependents | 部分一致（格式 SPDX 一致；dependents 未測） |
 | 5 | 產生 SBOM 的 REST 呼叫：202 輪詢，302 下載 | d3.md | 2026-11-02：generate-report 回 201 與 sbom_url；對 sbom_url 輪詢三次皆立即回 302（導向 blob 儲存體），沒有看到 202（小型 repo 可能立即完成） | 部分一致（302 一致；202 未出現，不能證明或否定） |
