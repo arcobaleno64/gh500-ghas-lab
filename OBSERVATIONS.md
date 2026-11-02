@@ -4,8 +4,11 @@
 
 | 實驗 | 學習站說法 | 來源 | 實際觀察 | 結果 |
 | ---- | ---------- | ---- | -------- | ---- |
-| 0 | 公開 repository 的 secret scanning 自動啟用 | d2.md | | |
-| 0 | Dependabot alerts 預設不啟用 | d1.md | | |
+| 0 | 公開 repository 的 secret scanning 自動啟用 | d2.md | 2026-11-02：新建公開 repo 後，API 的 security_and_analysis 顯示 secret_scanning 為 enabled（建立後未做任何設定） | 一致 |
+| 0 | Dependabot alerts 預設不啟用 | d1.md | 2026-11-02：GET vulnerability-alerts 回 404，dependabot/alerts 回 403「Dependabot alerts are disabled for this repository」；dependabot_security_updates 為 disabled | 一致 |
+| 0 | （學習站未寫）新建公開 repo 的 push protection 預設狀態 | — | 2026-11-02：secret_scanning_push_protection 為 enabled，未做任何設定。不確定是 repo 預設、帳號層級設定，還是公開 repo 的預設行為 | 學習站未涵蓋，需補或標註 |
+| 0 | （學習站未寫）新建公開 repo 的 non-provider patterns 與 validity checks 預設 | — | 2026-11-02：兩者皆 disabled | 學習站未涵蓋 |
+| 0 | （學習站未寫）code scanning default setup 預設 | — | 2026-11-02：default-setup state 為 not-configured | 學習站未涵蓋 |
 | 1 | 命令列推送含 partner pattern 的 secret 會被阻擋 | d2.md | | |
 | 1 | 「I'll fix it later」產生開啟中的警示 | d2.md | | |
 | 1 | 「It's used in tests」產生已關閉的警示 | d2.md | | |
