@@ -13,3 +13,5 @@ jobs:
         with:
           # 實驗 3 會修改這些選項；預設只要發現有弱點的套件就失敗。
           fail-on-severity: high
+          allow-licenses: MIT
+          deny-licenses: GPL-3.0
