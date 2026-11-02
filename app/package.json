@@ -1,0 +1,11 @@
+{
+  "name": "gh500-lab-app",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Intentionally vulnerable demo for GitHub security feature practice. Do not deploy.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.21.2",
+    "lodash": "4.17.15"
+  }
+}
